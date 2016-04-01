@@ -1,0 +1,7 @@
+.venv
+env_variables.sh
+*.log
+*.pyc
+.*
+!.gitignore
+
