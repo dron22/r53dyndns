@@ -1,8 +1,7 @@
-.venv
 env_variables.sh
 *.egg-info
 *.log
 *.pyc
 .*
 !.gitignore
-
+!.travis.yml

@@ -1,0 +1,13 @@
+boto==2.39.0
+funcsigs==1.0.0
+mock==2.0.0
+ordereddict==1.1
+pbr==1.8.1
+pluggy==0.3.1
+py==1.4.31
+pytest==2.9.1
+r53dyndns==0.1
+requests==2.9.1
+six==1.10.0
+tox==2.3.1
+virtualenv==15.0.1
