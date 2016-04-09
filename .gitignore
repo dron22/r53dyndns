@@ -1,5 +1,6 @@
 .venv
 env_variables.sh
+*.egg-info
 *.log
 *.pyc
 .*
