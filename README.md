@@ -17,9 +17,9 @@ simple solution to set up you own DNS.
 
 ### Usage
 
-        r53dyndns -z <ZONE> -d <DNS>
+        r53dyndns -z <ZONE> -d <DNS> [-t <TTL>]
 
-        r53dyndns -z domain.com -d sub.domain.com
+        r53dyndns -z domain.com -d sub.domain.com -t 30
 
 
 ### Authentication
@@ -31,8 +31,15 @@ environment variables for authentication
         AWS_SECRET_ACCESS_KEY
 
 
-### Limitations
+### AWS Route53 pricing (as of Apr. 13th)
 
-AWS Route53 service has a minimum ttl of 60 seconds. This might be a problem
-in production, but for a lot of solutions it is not.
+Hosted Zones
+
+$0.50 per hosted zone / month for the first 25 hosted zones
+$0.10 per hosted zone / month for additional hosted zones
+
+Standard Queries
+
+$0.400 per million queries – first 1 Billion queries / month
+$0.200 per million queries – over 1 Billion queries / month
 

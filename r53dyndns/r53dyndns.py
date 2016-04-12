@@ -1,21 +1,10 @@
 # -*- coding: utf-8 -*-
 
-"""
-
-works only for IPv4
-
-"""
-
-import os
 import sys
 import time
 import random
 import requests
-import argparse
 import boto.route53
-
-# configs
-TTL = 60
 
 
 class IpDetector:
@@ -58,14 +47,14 @@ class R53Updater:
         conn = boto.route53.connection.Route53Connection()
         return conn.get_zone(aws_r53_zone)
 
-    def update_dyndns(self, dns, ip):
+    def update_dyndns(self, dns, ip, ttl):
         record = self.zone.get_a(dns)
         print('Set "%s" to ip: %s' % (dns, ip))
         if record:
-            status = self.zone.update_a(name=dns, value=ip, ttl=TTL)
+            status = self.zone.update_a(name=dns, value=ip, ttl=ttl)
             self.wait_for_success(status)
         else:
-            status = self.zone.add_a(name=dns, value=ip, ttl=TTL)
+            status = self.zone.add_a(name=dns, value=ip, ttl=ttl)
             self.wait_for_success(status)
 
     def did_ip_change(self, dns, ip):
@@ -94,10 +83,10 @@ def get_ip():
     return ip_detector.detect()
 
 
-def update(zone, dns):
+def update(zone, dns, ttl):
     ip = get_ip()
     updater = R53Updater(zone)
     if updater.did_ip_change(dns=dns, ip=ip):
-        updater.update_dyndns(dns=dns, ip=ip)
+        updater.update_dyndns(dns=dns, ip=ip, ttl=ttl)
     else:
         print('IP did not change')

@@ -8,6 +8,7 @@ from r53dyndns.r53dyndns import R53Updater
 
 ZONE = 'r53zone.com'
 DNS = 'test.r53zone.com'
+TTL = 30
 IPS = ['188.192.168.1', '217.192.168.1', '217.192.168.1']
 
 
@@ -75,14 +76,14 @@ def r53updater(monkeypatch, boto_connection):
 
 def test_r53updater(r53updater, boto_zone):
 
-    r53dyndns.update(ZONE, DNS)
+    r53dyndns.update(ZONE, DNS, TTL)
     assert len(boto_zone.records[DNS].resource_records) == 1
     assert boto_zone.records[DNS].resource_records[0] == IPS[0]
 
-    r53dyndns.update(ZONE, DNS)
+    r53dyndns.update(ZONE, DNS, TTL)
     assert len(boto_zone.records[DNS].resource_records) == 1
     assert boto_zone.records[DNS].resource_records[0] == IPS[1]
 
-    r53dyndns.update(ZONE, DNS)
+    r53dyndns.update(ZONE, DNS, TTL)
     assert len(boto_zone.records[DNS].resource_records) == 1
     assert boto_zone.records[DNS].resource_records[0] == IPS[1]

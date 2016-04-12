@@ -4,6 +4,9 @@ import os
 import argparse
 import r53dyndns.r53dyndns as r53dyndns
 
+DEFAULT_TTL = 30
+
+
 for i in ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']:
     if not os.environ.get(i):
         print('Environment variable "%s" is required.' % i)
@@ -12,9 +15,11 @@ for i in ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']:
 parser = argparse.ArgumentParser()
 parser.add_argument('-z', '--zone', metavar='<ZONE>', required=True)
 parser.add_argument('-d', '--dns', metavar='<DNS_NAME>', required=True)
+parser.add_argument('-t', '--ttl', metavar='<TTL>', default=DEFAULT_TTL)
 
 args = parser.parse_args()
 zone = args.zone
 dns = args.dns
+ttl = args.ttl
 
-r53dyndns.update(zone, dns)
+r53dyndns.update(zone=zone, dns=dns, ttl=ttl)
