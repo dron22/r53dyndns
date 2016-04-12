@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+import os
+import argparse
+import r53dyndns.r53dyndns as r53dyndns
+
+for i in ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']:
+    if not os.environ.get(i):
+        print('Environment variable "%s" is required.' % i)
+        exit(1)
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-z', '--zone', metavar='<ZONE>', required=True)
+parser.add_argument('-d', '--dns', metavar='<DNS_NAME>', required=True)
+
+args = parser.parse_args()
+zone = args.zone
+dns = args.dns
+
+r53dyndns.update(zone, dns)

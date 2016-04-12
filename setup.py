@@ -41,6 +41,7 @@ setup(
     license='MIT',
     packages=['r53dyndns'],
     install_requires=requirements,
+    scripts=['bin/r53dyndns'],
     tests_require=['tox'],
     cmdclass={'test': Tox},
     zip_safe=False

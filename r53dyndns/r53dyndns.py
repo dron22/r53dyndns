@@ -35,7 +35,8 @@ class IpDetector:
             parser = getattr(self, 'parser_' + parser_name)
             try:
                 r = requests.get(url)
-            except:
+            except Exception as e:
+                print(e)
                 continue
             ip = parser(r)
             break
@@ -88,30 +89,15 @@ class R53Updater:
             print('Error: %s' % status.status)
 
 
-def main():
-
-    for i in ['AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY']:
-        if not os.environ.get(i):
-            print('Environment variable \'%s\' is required.' % i)
-            exit(1)
-
-    parser = argparse.ArgumentParser()
-    parser.add_argument('-z', '--zone', metavar='<ZONE>', required=True)
-    parser.add_argument('-d', '--dns', metavar='<DNS_NAME>', required=True)
-
-    args = parser.parse_args()
-    aws_r53_zone = args.zone
-    dns_name = args.dns
-
+def get_ip():
     ip_detector = IpDetector()
-    myip = ip_detector.detect()
-    updater = R53Updater(aws_r53_zone)
+    return ip_detector.detect()
 
-    if updater.did_ip_change(dns=dns_name, ip=myip):
-        updater.update_dyndns(dns=dns_name, ip=myip)
+
+def update(zone, dns):
+    ip = get_ip()
+    updater = R53Updater(zone)
+    if updater.did_ip_change(dns=dns, ip=ip):
+        updater.update_dyndns(dns=dns, ip=ip)
     else:
         print('IP did not change')
-
-
-if __name__ == "__main__":
-    main()
