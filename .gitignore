@@ -3,5 +3,8 @@ env_variables.sh
 *.log
 *.pyc
 .*
+build/
+dist/
+TODO.*
 !.gitignore
 !.travis.yml
