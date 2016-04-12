@@ -12,14 +12,14 @@ simple solution to set up you own DNS.
 
 ### Install
 
-        sudo pip install r53dyndns
+    pip install r53dyndns
 
 
 ### Usage
 
-        r53dyndns -z <ZONE> -d <DNS> [-t <TTL>]
+    r53dyndns -z <ZONE> -d <DNS> [-t <TTL>]
 
-        r53dyndns -z domain.com -d sub.domain.com -t 30
+    r53dyndns -z domain.com -d sub.domain.com -t 30
 
 
 ### Authentication
@@ -27,19 +27,21 @@ simple solution to set up you own DNS.
 R53DynDNS uses the python boto module as an interface to AWS which need two
 environment variables for authentication
 
-        AWS_ACCESS_KEY_ID
-        AWS_SECRET_ACCESS_KEY
+    AWS_ACCESS_KEY_ID
+    AWS_SECRET_ACCESS_KEY
 
 
-### AWS Route53 pricing (as of Apr. 13th)
+### AWS Route53 pricing
 
-Hosted Zones
+> as of Apr. 13th
 
-$0.50 per hosted zone / month for the first 25 hosted zones
-$0.10 per hosted zone / month for additional hosted zones
+* Hosted Zones
 
-Standard Queries
+    $0.50 per hosted zone / month for the first 25 hosted zones  
+    $0.10 per hosted zone / month for additional hosted zones
 
-$0.400 per million queries – first 1 Billion queries / month
-$0.200 per million queries – over 1 Billion queries / month
+* Standard Queries
+
+    $0.400 per million queries – first 1 Billion queries / month  
+    $0.200 per million queries – over 1 Billion queries / month
 
