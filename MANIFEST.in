@@ -1,2 +1,2 @@
-include README.rst
+include *.rst LICENSE.txt tox.ini .travis.yml requirements.txt
 
