@@ -1,61 +1,58 @@
 
-============
 R53DynDNS
 ============
 
-.. image:: https://travis-ci.org/dron22/r53dyndns.svg?branch=master
-
 Simple Dynamic DNS with AWS Route53
 
-If you need a simple DynDNS solution and you are already on AWS, why not use
-their Route53 service to set it up yourself? R53DynDNS provides you with a
-simple solution to set up you own DNS.
+.. image:: https://travis-ci.org/dron22/r53dyndns.svg?branch=master
+    :alt: travis-status
 
 
----------------
-Install
+QuickStart
 ---------------
 
-    pip install r53dyndns
+1. Install
 
+.. sourcecode:: bash
 
----------------
-Usage
----------------
+    $ pip install r53dyndns
 
+2. Set environment variables
 
-    r53dyndns -z <ZONE> -d <DNS> [-t <TTL>]
+.. sourcecode:: bash
 
-    r53dyndns -z domain.com -d sub.domain.com -t 30
+    export AWS_ACCESS_KEY_ID="<AWS_KEY>"
+    export AWS_SECRET_ACCESS_KEY="<AWS_SECRET_KEY>"
+
+3. Run script
+ 
+.. sourcecode:: bash
+
+    $ r53dyndns -z <ZONE> -d <DNS> [-t <TTL>]
+
+    $ r53dyndns -z domain.com -d sub.domain.com -t 30
 
  
----------------
-Authentication
----------------
-
-R53DynDNS uses the python boto module as an interface to AWS which need two
-environment variables for authentication
-
-    AWS_ACCESS_KEY_ID
-
-    AWS_SECRET_ACCESS_KEY
-
-
---------------------
-AWS Route53 pricing
+AWS Route53 pricing (as of Apr. 13th 2016)
 --------------------
 
-> as of Apr. 13th
+AWS Pricing is cheap and there won't be significant costs.
 
 * Hosted Zones
 
     $0.50 per hosted zone / month for the first 25 hosted zones
-
+    
     $0.10 per hosted zone / month for additional hosted zones
 
 * Standard Queries
 
     $0.400 per million queries – first 1 Billion queries / month  
-
+    
     $0.200 per million queries – over 1 Billion queries / month
+
+
+License
+---------
+
+`MIT <https://opensource.org/licenses/mit-license.html>`_
 
