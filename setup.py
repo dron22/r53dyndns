@@ -32,17 +32,19 @@ class Tox(TestCommand):
         sys.exit(errno)
 
 setup(
-    name='r53dyndns',
-    version='0.1',
-    description='Simple DynDns with AWS Route53',
-    url='https://github.com/dron22/r53dyndns',
     author='dron22',
     author_email='info@fastback.io',
-    license='MIT',
-    packages=['r53dyndns'],
+    cmdclass={'test': Tox},
+    description='Simple DynDns with AWS Route53',
+    include_package_data=True,
     install_requires=requirements,
+    license='MIT',
+    name='r53dyndns',
+    packages=['r53dyndns'],
     scripts=['bin/r53dyndns'],
     tests_require=['tox'],
-    cmdclass={'test': Tox},
+    url='https://github.com/dron22/r53dyndns',
+    version='0.1.0',
     zip_safe=False
 )
+
